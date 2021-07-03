@@ -50,18 +50,18 @@
     ""
     (str "ag-theme-" theme)))
 
-(defn aggrid-styled [{:keys [size] :as spec}]
+(defn aggrid-styled [{:keys [style] :as spec}]
   (let [theme (rf/subscribe [:css/theme-component :aggrid])]
-    (fn [{:keys [size] :as spec}]
+    (fn [{:keys [style] :as spec}]
       [:div {:className (ag-theme-classname @theme)
-             ;:style (:style (container-style (or size :small))) ;{:width "400px" :max-width "400px" :height "300px"}
+             :style style ;{:width "400px" :max-width "400px" :height "300px"}
              }
        [aggrid spec]])))
 
+; simple wraper to create default box size
 (defn aggrid-boxed [{:keys [size] :as spec}]
-  [:div {:style (:style (container-style (or size :small))) ;{:width "400px" :max-width "400px" :height "300px"}
-         }
-   [aggrid-styled spec]])
+  [aggrid-styled (merge (container-style (or size :small)) ;{:width "400px" :max-width "400px" :height "300px"}
+                        spec)])
 
 #_(defn ^{:category :data}
     aggrid-boxed

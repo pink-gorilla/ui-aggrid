@@ -38,7 +38,7 @@
   ; demo ui
 
   :goldly
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.2.112"
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.2.114"
                                         :exclusions [org.pinkgorilla/gorilla-ui] 
                                         }}
    :exec-fn goldly-server.app/goldly-server-run!
