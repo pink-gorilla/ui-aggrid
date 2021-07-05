@@ -1,10 +1,9 @@
 {:name "ui-aggrid"
  :clj-require []
- :cljs-namespace [pinkgorilla.aggrid.goldly]
-
- ; aggrid is styled variant. pinkie uses boxed
- :cljs-bindings {'aggrid pinkgorilla.aggrid.aggrid/aggrid-styled}
- :cljs-ns-bindings {}
+ :cljs-namespace [pinkgorilla.aggrid.goldly
+                  tick.alpha.api
+                  thi.ng.strf.core
+                  ]
  :theme {:available  {:aggrid {true ["ag-grid-community/dist/styles/ag-grid.css"]
                                "blue" ["ag-grid-community/dist/styles/ag-theme-blue.css"]
                                "fresh" ["ag-grid-community/dist/styles/ag-theme-fresh.css"]
@@ -16,22 +15,35 @@
                                "balham-dark" ["ag-grid-community/dist/styles/ag-theme-balham-dark.css"]
                                "material" ["ag-grid-community/dist/styles/ag-theme-material.css"]}}
          :current {:aggrid  "balham"}}
+ 
+ :pinkie {:p/aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
+ :cljs-bindings {;'aggrid pinkgorilla.aggrid.aggrid/aggrid-styled
+                 'aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
+ :cljs-ns-bindings {'t {'now tick.alpha.api/now
+                        'time tick.alpha.api/time}
+                    'f {'format thi.ng.strf.core/format
+                        'float thi.ng.strf.core/float}
+                    }
 
- ; modules and pinkie not yet via loader
- :pinkie {:p/aggrid pinkgorilla.aggrid.aggrid/aggrid-styled}
-
+; modules  not yet via loader
  :modules {}
 
  :snippets [; aggrid
             {:type :pinkie
              :category :aggrid
              :id :aggrid-small
-             :filename "snippets/aggrid/aggrid_small.edn"}
+             :filename "snippets/aggrid/sm.edn"}
             {:type :pinkie
              :category :aggrid
-             :id :aggrid-small2
-             :filename "snippets/aggrid/aggrid_small2.edn"}
+             :id :aggrid-custom
+             :filename "snippets/aggrid/custom.edn"}
             {:type :goldly-clj
              :category :aggrid
              :id :aggrid-large
-             :filename "snippets/aggrid/aggrid_large.clj"}]}
+             :filename "snippets/aggrid/lg.clj"}
+            {:type :goldly-clj
+             :category :aggrid
+             :id :aggrid-pagination
+             :filename "snippets/aggrid/pagination.clj"}
+            
+            ]}

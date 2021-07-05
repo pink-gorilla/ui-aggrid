@@ -3,7 +3,7 @@
    [clojure.set :refer [rename-keys]]
    [re-frame.core :as rf]
    ["ag-grid-react" :as rs :refer [AgGridReact]]
-   [pinkgorilla.aggrid.box :refer [container-style]]))
+   [pinkgorilla.aggrid.box :refer [apply-style]]))
 
 (defn default-column [k]
   {:headerName (name k)
@@ -54,14 +54,13 @@
   (let [theme (rf/subscribe [:css/theme-component :aggrid])]
     (fn [{:keys [style] :as spec}]
       [:div {:className (ag-theme-classname @theme)
-             :style style ;{:width "400px" :max-width "400px" :height "300px"}
-             }
+             :style style}
        [aggrid spec]])))
 
 ; simple wraper to create default box size
-(defn aggrid-boxed [{:keys [size] :as spec}]
-  [aggrid-styled (merge (container-style (or size :small)) ;{:width "400px" :max-width "400px" :height "300px"}
-                        spec)])
+(defn aggrid-boxed [{:keys [box] :as spec
+                     :or {box :md}}]
+  [aggrid-styled (apply-style spec)])
 
 #_(defn ^{:category :data}
     aggrid-boxed
