@@ -1,6 +1,6 @@
 {:name "ui-aggrid"
  :clj-require []
- :cljs-namespace [pinkgorilla.aggrid.goldly
+ :cljs-namespace [pinkgorilla.aggrid.aggrid
                   tick.alpha.api
                   thi.ng.strf.core
                   ]
@@ -17,8 +17,7 @@
          :current {:aggrid  "balham"}}
  
  :pinkie {:p/aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
- :cljs-bindings {;'aggrid pinkgorilla.aggrid.aggrid/aggrid-styled
-                 'aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
+ :cljs-bindings {'aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
  :cljs-ns-bindings {'t {'now tick.alpha.api/now
                         'time tick.alpha.api/time}
                     'f {'format thi.ng.strf.core/format

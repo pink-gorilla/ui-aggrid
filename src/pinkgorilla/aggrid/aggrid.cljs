@@ -3,7 +3,7 @@
    [clojure.set :refer [rename-keys]]
    [re-frame.core :as rf]
    ["ag-grid-react" :as rs :refer [AgGridReact]]
-   [pinkgorilla.aggrid.box :refer [apply-style]]))
+   [pinkie.box :refer [apply-style]]))
 
 (defn default-column [k]
   {:headerName (name k)
@@ -62,16 +62,3 @@
                      :or {box :md}}]
   [aggrid-styled (apply-style spec)])
 
-#_(defn ^{:category :data}
-    aggrid-boxed
-    "reagent component to render highchart-spec via highcharts.js
-   Usage:  [:p/highchart spec-as-clj-data]"
-    [data]
-    [box {:size :small
-          :render-fn aggrid-styled
-        ;:box-fn highchart-box
-          :data data}])
-
-#_(defn aggrid-b [data]
-    [:div {:style {:width "400px" :max-width "400px" :height "300px"}}
-     [aggrid-styled data]])
