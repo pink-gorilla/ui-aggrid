@@ -39,15 +39,12 @@
   ; demo ui
 
   :goldly
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
-                                        :exclusions [org.pinkgorilla/gorilla-ui] 
-                                        }}
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"}}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "watch"
                :config {:goldly {:routes {"" :user/main
-                                           "grid" :user/grid
-                                           "grid-formatter" :user/grid-formatter
-                                          }}}}}
+                                          "grid" :user/grid
+                                          "grid-formatter" :user/grid-formatter}}}}}
 
 ;
   }}
