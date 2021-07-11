@@ -1,5 +1,6 @@
 {:paths ["src"
          "resources" ; snippets
+         "target/node_modules" ; css png resources from npm modules
          ]
  :deps
  {org.clojure/clojure    {:mvn/version "1.10.3"}
