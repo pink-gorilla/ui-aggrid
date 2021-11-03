@@ -1,5 +1,6 @@
 {:name "ui-aggrid"
- :clj-require []
+ ; build-time
+ :lazy true
  :theme {:available  {:aggrid {true ["ag-grid-community/dist/styles/ag-grid.css"]
                                "blue" ["ag-grid-community/dist/styles/ag-theme-blue.css"]
                                "fresh" ["ag-grid-community/dist/styles/ag-theme-fresh.css"]
@@ -15,21 +16,7 @@
  :cljs-bindings {'aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
  :cljs-ns-bindings {}
  :pinkie {:p/aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
- :lazy true
- :snippets [; aggrid
-            {:type :pinkie
-             :category :aggrid
-             :id :aggrid-small
-             :filename "snippets/aggrid/sm.edn"}
-            {:type :pinkie
-             :category :aggrid
-             :id :aggrid-custom
-             :filename "snippets/aggrid/custom.edn"}
-            {:type :goldly-clj
-             :category :aggrid
-             :id :aggrid-large
-             :filename "snippets/aggrid/lg.clj"}
-            {:type :goldly-clj
-             :category :aggrid
-             :id :aggrid-pagination
-             :filename "snippets/aggrid/pagination.clj"}]}
+ ; runtime
+:clj-require []
+ 
+}
