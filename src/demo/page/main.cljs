@@ -1,4 +1,8 @@
 
+
+(rf/dispatch [:css/set-theme-component :tailwind-full "light"])
+(rf/dispatch [:css/set-theme-component :tailwind-girouette false])
+
 ; main page 
 
 (defn  demo-page [{:keys [handler route-params query-params] :as route}]

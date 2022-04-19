@@ -3,8 +3,8 @@
          "target/node_modules" ; css png resources from npm modules
          ]
  :deps
- {org.clojure/clojure    {:mvn/version "1.10.3"}
-  org.pinkgorilla/pinkie {:mvn/version "0.3.5"}} ; box
+ {org.clojure/clojure    {:mvn/version "1.11.1"}
+  org.pinkgorilla/pinkie {:mvn/version "0.3.11"}} ; box
  :aliases
  {;https://github.com/applied-science/deps-library
   :release
@@ -43,12 +43,10 @@
   ; demo ui
 
   :goldly
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.3.62"
-                                        :exclusions [org.pinkgorilla/ui-aggrid
-                                                     ;org.pinkgorilla/ui-highlightjs
-                                                     ;org.pinkgorilla/ui-markdown
-                                                     ]}
-                org.pinkgorilla/reval {:mvn/version "0.0.11"}
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.499"
+                                        :exclusions [org.pinkgorilla/ui-aggrid]}
+                org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; formatting
+                org.pinkgorilla/reval {:mvn/version "0.0.37"}
                 org.pinkgorilla/pinkie {:mvn/version "0.3.11"}}
    :exec-fn goldly.app/goldly-server-run!
    :exec-args {:profile "watch2" ; no tenx

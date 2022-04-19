@@ -27,26 +27,20 @@
 
 ; ROUND NUMBER
 
-(defn round-number
-  [number]
-  (if (nil? number) "" (f/format  [(f/float 0)] number)))
-
 (defn round-number-digits
   [digits number] ; digits is first parameter, so it can easily be applied (data last)
-  (if (nil? number) "" (f/format  [(f/float digits)] number)))
+  (if (nil? number) "" (to-fixed number digits)))
 
-(defn currency-formatter [params]
-  (let [p (js->clj params)
-        v (get p "value")]
-    (do ;(println "params are: " p)
-       ;(println "value: "  v)
-      (round-number-digits 2 v))))
+(defn round-number
+  [number]
+  (round-number-digits 0 number))
 
 (def rateCols [{:headerName "MyTenor" :field "tenor" :width 100 :sortable true :filter true :lockPosition true :pinned "left"}
                {:headerName "Metric/A" :valueGetter "data.metrics.a" :width 50 :sortable false :filter false}
                {:headerName "Rate" :field "rate" :width 50 :sortable true :filter false}
-               {:headerName "Vol-F" :field "vol-factor" :width 50 :valueFormatter currency-formatter :sortable false :filter false}
+               {:headerName "Vol-F" :field "vol-factor" :width 50 :format (partial round-number-digits 2) :sortable false :filter false}
                {:headerName "Comment" :field "s" :width 300 :sortable false :filter false}])
+
 (defn link-href [href text]
   [:a.bg-blue-300.cursor-pointer.hover:bg-red-700.m-1
    {:href href} text])

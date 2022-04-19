@@ -8,8 +8,7 @@ https://www.ag-grid.com/
 clojure -X:goldly
 ```
 
-Navigate your webbrowser to port 8000. 
-Snippets are in `running systems` / `snippet-registry`
+Navigate your webbrowser to port 8080. 
 
 ## In Goldly as a ui extension
 

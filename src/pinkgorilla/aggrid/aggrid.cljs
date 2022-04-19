@@ -5,27 +5,65 @@
    ["ag-grid-react" :as rs :refer [AgGridReact]]
    [pinkie.box :refer [apply-style]]))
 
-(defn default-column [k]
-  {:headerName (name k)
-   :field (name k)
-   :resizable true
-   :sortable true
-   :filter true})
+(defn col-kw->aggrid-column
+  ([k]
+   {:headerName (name k)
+    :field (name k)
+   ;:valueGetter "data.metrics.a"
+    :resizable true
+    :sortable true
+    :filter true
+   ;:width 50 
+   ;:valueFormatter currency-formatter
+   ;:lockPosition true 
+   ;:pinned "left"
+    })
+  ([k m]
+   (merge m (col-kw->aggrid-column k))))
+
+;; formatter
+
+(defn add-formatter [formatter]
+  (fn [params]
+    ;(println "formatting: " params)
+    (let [p (js->clj params)
+          v (get p "value")]
+      (formatter v))))
+
+(defn preprocess-col [{:keys [format field] :as col}]
+  (if (keyword? col)
+    (col-kw->aggrid-column col)
+    (let [col  (if (keyword? field)
+                 (col-kw->aggrid-column field col)
+                 col)]
+      (if format
+        (->
+         (assoc col :valueFormatter (add-formatter format))
+         (dissoc :format))
+        col))))
+
+(defn preprocess-cols [cols]
+  ;(println "preprocessing cols: " cols)
+  (into []
+        (map preprocess-col cols)))
+
+;; auto generate columns
+
+(defn all-cols [data]
+  (let [row1 (first data)
+        col-keys (keys row1)
+        columns (into []
+                      (map col-kw->aggrid-column col-keys))]
+    ;(println "all-cols: " all-cols)
+    columns))
 
 (defn default-cols [spec]
   (let [spec (rename-keys spec  {:columns :columnDefs
                                  :data :rowData})
         {:keys [columnDefs rowData]} spec]
     (if (and (not columnDefs) rowData)
-      (let [row1 (first rowData)
-            col-keys (keys row1)
-            columns (into []
-                          (map default-column col-keys))
-            r (assoc spec
-                     :columnDefs columns)]
-        ;(println "r:" r)
-        r)
-      spec)))
+      (assoc spec :columnDefs (all-cols rowData))
+      (assoc spec :columnDefs (preprocess-cols columnDefs)))))
 
 (defn on-grid-ready [p]
   ; https://www.ag-grid.com/javascript-grid/column-sizing/
