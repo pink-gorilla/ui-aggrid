@@ -73,6 +73,6 @@
                  ;:width "100%"
                    :color "blue"}}
      ['user/aggrid {:columnDefs  rateCols
-                 :rowData rates
-                 :pagination true
-                 :paginationAutoPageSize true}]]
+                    :rowData rates
+                    :pagination true
+                    :paginationAutoPageSize true}]]

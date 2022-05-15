@@ -29,6 +29,6 @@
 
 ^:R
 ['user/aggrid {:data rates
-            :box :lg
-            :pagination true
-            :paginationAutoPageSize true}]
+               :box :lg
+               :pagination true
+               :paginationAutoPageSize true}]

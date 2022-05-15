@@ -1,5 +1,5 @@
 {:paths ["src"
-         "resources" ; snippets
+         "resources" ; ext
          "target/node_modules" ; css png resources from npm modules
          ]
  :deps
@@ -22,10 +22,9 @@
  ; https://github.com/clj-kondo/clj-kondo/blob/master/doc/jvm.md
   :lint
   {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
-   :main-opts ["-m" "clj-kondo.main" 
+   :main-opts ["-m" "clj-kondo.main"
                "--lint" "src"
-               "--config" "cljkondo.edn"
-               ]}
+               "--config" "cljkondo.edn"]}
 
   :outdated
   {:extra-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
@@ -43,24 +42,37 @@
   ; demo ui
 
   :goldly
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.499"
-                                        :exclusions [org.pinkgorilla/ui-aggrid]}
-                org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; formatting
-                org.pinkgorilla/reval {:mvn/version "0.0.37"}
-                org.pinkgorilla/pinkie {:mvn/version "0.3.11"}}
-   :exec-fn goldly.app/goldly-server-run!
-   :exec-args {:profile "watch2" ; no tenx
-               :config {:goldly {:autoload-cljs-dir ["src/demo/page"
-                                                     "demo/page"]
-                                 :routes {:app {"" :user/main
-                                                "grid" :user/grid
-                                                "grid-formatter" :user/grid-formatter
-                                               ; devtools
-                                                "devtools/pages" :pages
-                                                "devtools/help" :devtools
-                                                "devtools/scratchpad" :scratchpad
-                                                "devtools/viewer" :viewer
-                                                "devtools/environment" :environment}}}}}}
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.519"
+                                        :exclusions [org.pinkgorilla/ui-aggrid]}}
+   :jvm-opts ["-Dmaven.wagon.rto=90000"]
+   :exec-fn goldly.app.build/goldly-build
+   :exec-args {:profile "compile2"
+               :config ["webly/config.edn" "goldly/config.edn"]}}
+
+
+; RUN SERVICES (keep running)
+  :docs-run
+  {:extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.519"
+                                             :exclusions [org.pinkgorilla/ui-aggrid]}}
+   :extra-paths ["demo"]
+   :jvm-opts ["-Dmaven.wagon.rto=90000"]
+   :exec-fn modular.system/start!
+   :exec-args {:profile "jetty"
+               :config ["webly/config.edn" "goldly/config.edn" "goldly/docs-config.edn"
+                        "demo/demo-config.edn"]
+               :services "goldly/docs-services.edn"}}
+
+  ; BUILD BUNDLE (then exit)
+  :docs-build
+  {:extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.519"
+                                             :exclusions [org.pinkgorilla/ui-aggrid]}}
+   :jvm-opts ["-Dmaven.wagon.rto=90000"]
+   :exec-fn goldly.app.build/goldly-build
+   :exec-args {:profile "compile2"
+               :config ["webly/config.edn" "goldly/config.edn" "goldly/docs-config.edn"]}}
+
+
+
 
 ;
   }}
