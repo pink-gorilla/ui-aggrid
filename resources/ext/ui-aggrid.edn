@@ -1,6 +1,10 @@
 {:name "ui-aggrid"
  ; build-time
  :lazy true
+ :cljs-namespace [pinkgorilla.aggrid.aggrid]
+ :cljs-bindings {'aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
+ :cljs-ns-bindings {}
+ ; theme
  :theme {:available  {:aggrid {true ["ag-grid-community/dist/styles/ag-grid.css"]
                                "blue" ["ag-grid-community/dist/styles/ag-theme-blue.css"]
                                "fresh" ["ag-grid-community/dist/styles/ag-theme-fresh.css"]
@@ -12,11 +16,7 @@
                                "balham-dark" ["ag-grid-community/dist/styles/ag-theme-balham-dark.css"]
                                "material" ["ag-grid-community/dist/styles/ag-theme-material.css"]}}
          :current {:aggrid  "balham"}}
- :cljs-namespace [pinkgorilla.aggrid.aggrid]
- :cljs-bindings {'aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
- :cljs-ns-bindings {}
- :pinkie {:p/aggrid pinkgorilla.aggrid.aggrid/aggrid-boxed}
+ 
  ; runtime
-:clj-require []
  
 }
