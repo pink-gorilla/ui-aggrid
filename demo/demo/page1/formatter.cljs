@@ -1,3 +1,11 @@
+(ns demo.page1.formatter
+  (:require
+   [goldly.page :as page]
+   [user :refer [to-fixed]]
+   [ui.aggrid :refer [aggrid]]
+   [demo.lib.ui :refer [link-href link-dispatch]]))
+
+
 (def rates
   [{:tenor "1D" :rate 1 :vol-factor 1 :s "asdköfj adkfj alkdsfj löasfj ölkdjaf löksdfj löa f" :metrics {:a 1} :report-metrics {:a 1}}
    {:tenor "5D" :rate 3 :vol-factor 1.5 :s "asdköfj adkfj alkdsfj löasfj ölkdjaf löksdfj löa f" :metrics {:a 1} :report-metrics {:a 1}}
@@ -41,11 +49,9 @@
                {:headerName "Vol-F" :field "vol-factor" :width 50 :format (partial round-number-digits 2) :sortable false :filter false}
                {:headerName "Comment" :field "s" :width 300 :sortable false :filter false}])
 
-(defn link-href [href text]
-  [:a.bg-blue-300.cursor-pointer.hover:bg-red-700.m-1
-   {:href href} text])
 
-(defmethod reagent-page :user/grid-formatter [{:keys [handler route-params query-params] :as route}]
+
+(defn demo-page [{:keys [handler route-params query-params] :as route}]
   [:div
    [:h1.text-2xl.text-red-600.m-5 "grid with custom column formatter"]
    [link-href "/" "main"]
@@ -54,3 +60,5 @@
             :data rates
             :pagination true
             :paginationAutoPageSize true}]])
+
+(page/add demo-page :user/grid-formatter)

@@ -4,7 +4,7 @@
          ]
  :deps
  {org.clojure/clojure    {:mvn/version "1.11.1"}
-  org.pinkgorilla/pinkie {:mvn/version "0.3.11"}} ; box
+  org.pinkgorilla/pinkie {:mvn/version "0.3.15"}} ; box
  :aliases
  {;https://github.com/applied-science/deps-library
   :release
@@ -41,38 +41,25 @@
 
   ; demo ui
 
-  :goldly
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.519"
-                                        :exclusions [org.pinkgorilla/ui-aggrid]}}
-   :jvm-opts ["-Dmaven.wagon.rto=90000"]
-   :exec-fn goldly.app.build/goldly-build
-   :exec-args {:profile "compile2"
-               :config ["webly/config.edn" "goldly/config.edn"]}}
-
 
 ; RUN SERVICES (keep running)
-  :docs-run
-  {:extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.519"
-                                             :exclusions [org.pinkgorilla/ui-aggrid]}}
+  :goldly
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.546"}
+                org.pinkgorilla/ui-repl {:mvn/version "0.0.53"} ; tick, reagent
+                
+                }
    :extra-paths ["demo"]
    :jvm-opts ["-Dmaven.wagon.rto=90000"]
    :exec-fn modular.system/start!
    :exec-args {:profile "jetty"
                :config ["webly/config.edn" "goldly/config.edn" "goldly/docs-config.edn"
                         "demo/demo-config.edn"]
-               :services "goldly/docs-services.edn"}}
+               :services "goldly/services.edn"}}
 
   ; BUILD BUNDLE (then exit)
-  :docs-build
-  {:extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.519"
-                                             :exclusions [org.pinkgorilla/ui-aggrid]}}
-   :jvm-opts ["-Dmaven.wagon.rto=90000"]
-   :exec-fn goldly.app.build/goldly-build
-   :exec-args {:profile "compile2"
-               :config ["webly/config.edn" "goldly/config.edn" "goldly/docs-config.edn"]}}
-
-
-
+  :build
+  {:exec-fn goldly.app.build/goldly-build
+   :exec-args {:profile "compile2"}}
 
 ;
   }}

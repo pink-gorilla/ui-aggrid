@@ -12,8 +12,8 @@
      [:h1 "simple demo:"]
      [:div {:style {:height "200px"
                     :width "800px"}}
-      [:p/aggrid {:columnDefs columnDefs
-                  :rowData rowData}]]]
+      ['ui.aggrid/aggrid {:columnDefs columnDefs
+                          :rowData rowData}]]]
 
 (def rates
   [{:tenor "1D" :rate 1 :vol-factor 1 :s "asdköfj adkfj alkdsfj löasfj ölkdjaf löksdfj löa f" :metrics {:a 1} :report-metrics {:a 1}}
@@ -72,7 +72,7 @@
                  ;:height "100%"
                  ;:width "100%"
                    :color "blue"}}
-     ['user/aggrid {:columnDefs  rateCols
-                    :rowData rates
-                    :pagination true
-                    :paginationAutoPageSize true}]]
+     ['ui.aggrid/aggrid {:columnDefs  rateCols
+                         :rowData rates
+                         :pagination true
+                         :paginationAutoPageSize true}]]

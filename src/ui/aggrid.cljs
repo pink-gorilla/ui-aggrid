@@ -1,4 +1,4 @@
-(ns pinkgorilla.aggrid.aggrid
+(ns ui.aggrid
   (:require
    [clojure.set :refer [rename-keys]]
    [re-frame.core :as rf]

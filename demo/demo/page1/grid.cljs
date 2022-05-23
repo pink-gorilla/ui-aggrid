@@ -1,13 +1,13 @@
-(defn link-href [href text]
-  [:a.bg-blue-300.cursor-pointer.hover:bg-red-700.m-1
-   {:href href} text])
+(ns demo.page1.grid
+  (:require
+   [goldly.page :as page]
+   [tick.core :as t]
+   [tick.goldly :refer [dt-format]]
+   [user :refer [to-fixed]]
+   [ui.aggrid :refer [aggrid]]
+   [demo.lib.ui :refer [link-href link-dispatch]]))
 
-(defn link-fn [fun text]
-  [:a.bg-blue-300.cursor-pointer.hover:bg-red-700.m-1
-   {:on-click fun} text])
 
-(defn link-dispatch [rf-evt text]
-  (link-fn #(rf/dispatch rf-evt) text))
 
 (def data [{:make "Toyota" :model "Celica" :price 35000}
            {:make "Ford" :model "Mondeo" :price 32000}
@@ -25,7 +25,7 @@
   (when dt
     (dt-format "YYYYMMdd" dt)))
 
-(defmethod reagent-page :user/grid [{:keys [route-params query-params handler] :as route}]
+(defn grid-page [{:keys [route-params query-params handler] :as route}]
   [:div.h-screen.w-screen.bg-blue-100.grid.grid-cols-1
    {:style {:grid-template-rows "auto 1fr"}}
    [:div.h-8.w-full.bg-blue-300
@@ -34,7 +34,8 @@
     [link-dispatch [:css/set-theme-component :aggrid "balham"] "balham"]
     [link-dispatch [:css/set-theme-component :aggrid "balham-dark"] "balham-dark"]
     [link-dispatch [:css/set-theme-component :aggrid "fresh"] "fresh"]
-    [:span "time: " (t/now)]]
+    ;[:span "time: " (t/now)]
+    ]
    [:div.grid.grid-cols-2.h-full.w-full.bg-yellow-300
     [aggrid {:data data}]
     [aggrid {:data data2
@@ -45,3 +46,6 @@
                         :format (partial round-number-digits 2)}
                        {:field :date
                         :format fmt-yyyymmdd}]}]]])
+
+
+(page/add grid-page :user/grid)
