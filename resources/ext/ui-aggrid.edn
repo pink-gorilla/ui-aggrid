@@ -1,7 +1,7 @@
 {:name "ui-aggrid"
  ; build
  ;:lazy true
- :sci-lazy true
+ :lazy-sci true
  :cljs-namespace [ui.aggrid]
  :cljs-ns-bindings {'ui.aggrid {'aggrid ui.aggrid/aggrid-boxed}}
  ; theme
