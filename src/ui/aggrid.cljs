@@ -77,10 +77,12 @@
 (defn ^{:category :viz}
   aggrid
   "displays a seq in a table, uses ag-grid"
-  [data]
-  (let [spec (default-cols data)
+  [spec]
+  (let [spec (default-cols spec)
         ;spec (assoc spec :onFirstDataRendered on-grid-ready)
-        spec (assoc spec :onGridReady on-grid-ready)]
+        spec (if (:autosize-columns spec)
+               (assoc spec :onGridReady on-grid-ready)
+               spec)]
     [:> AgGridReact spec]))
 
 (defn ag-theme-classname [theme]
