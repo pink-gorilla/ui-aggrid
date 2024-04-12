@@ -37,14 +37,14 @@
 ;; LARGE
 
 ^:R
-[:p/aggrid {:data rates
-            :box :lg}]
+[:p/aggrid-boxed {:data rates
+                  :box :lg}]
 
 ;; CUSTOM 
 
 ^:R
-['ui.aggrid/aggrid {:style {:width "100%"
-                            :height "250px"}
-                    :data [{:make "Toyota" :model "Celica" :price 35000}
-                           {:make "Ford" :model "Mondeo" :price 32000}
-                           {:make "Porsche" :model "Boxter" :price 72000}]}]
+['ui.aggrid/aggrid-boxed {:style {:width "100%"
+                                  :height "250px"}
+                          :data [{:make "Toyota" :model "Celica" :price 35000}
+                                 {:make "Ford" :model "Mondeo" :price 32000}
+                                 {:make "Porsche" :model "Boxter" :price 72000}]}]

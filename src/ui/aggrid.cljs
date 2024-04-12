@@ -3,7 +3,7 @@
    [clojure.set :refer [rename-keys]]
    [re-frame.core :as rf]
    ["ag-grid-react" :as rs :refer [AgGridReact]]
-   [pinkie.box :refer [apply-style]]))
+   [pinkie.ui.core :refer [apply-box-style]]))
 
 (defn col-kw->aggrid-column
   ([k]
@@ -100,5 +100,5 @@
 ; simple wraper to create default box size
 (defn aggrid-boxed [{:keys [box] :as spec
                      :or {box :md}}]
-  [aggrid-styled (apply-style spec)])
+  [aggrid-styled (apply-box-style spec)])
 

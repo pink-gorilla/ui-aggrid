@@ -72,7 +72,7 @@
                  ;:height "100%"
                  ;:width "100%"
                    :color "blue"}}
-     ['ui.aggrid/aggrid {:columnDefs  rateCols
-                         :rowData rates
-                         :pagination true
-                         :paginationAutoPageSize true}]]
+     ['ui.aggrid/aggrid-boxed {:columnDefs  rateCols
+                               :rowData rates
+                               :pagination true
+                               :paginationAutoPageSize true}]]

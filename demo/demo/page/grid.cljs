@@ -1,10 +1,9 @@
-(ns demo.page1.grid
+(ns demo.page.grid
   (:require
-   [goldly.page :as page]
    [tick.core :as t]
-   [tick.goldly :refer [dt-format]]
-   [user :refer [to-fixed]]
-   [ui.aggrid :refer [aggrid]]
+   [tick.helper :refer [dt-format]]
+   [pinkgorilla.repl.cljs.js :refer [to-fixed]]
+   [ui.aggrid :refer [aggrid-boxed]]
    [demo.lib.ui :refer [link-href link-dispatch]]))
 
 
@@ -37,8 +36,8 @@
     ;[:span "time: " (t/now)]
     ]
    [:div.grid.grid-cols-2.h-full.w-full.bg-yellow-300
-    [aggrid {:data data}]
-    [aggrid {:data data2
+    [aggrid-boxed {:data data}]
+    [aggrid-boxed {:data data2
              :box :fl
              :columns [:make
                        :model
@@ -47,5 +46,3 @@
                        {:field :date
                         :format fmt-yyyymmdd}]}]]])
 
-
-(page/add grid-page :user/grid)

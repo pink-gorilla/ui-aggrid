@@ -5,7 +5,10 @@ https://www.ag-grid.com/
 ## Demo
 
 ```
-clojure -X:docs-run
+ clojure -X:webly:npm-install
+ clojure -X:webly:compile
+ clojure -X:webly:run
+
 ```
 
 Navigate your webbrowser to port 8080. 

@@ -1,0 +1,15 @@
+{:name "demo-aggrid"
+ :lazy true
+ :depends-on #{:ui-aggrid :tick}
+
+ :cljs-routes {""  demo.page.main/main-page
+               "grid" demo.page.grid/grid-page
+               "grid-formatter"  demo.page.formatter/formatter-page}
+  :cljs-namespace [demo.page.main
+                   demo.page.grid
+                   demo.page.formatter]
+ :cljs-ns-bindings {'demo.page.main {'main-page demo.page.main/main-page}
+                    'demo.page.grid {'grid-page  demo.page.grid/grid-page}
+                    'demo.page.formatter {'formatter-page demo.page.formatter/formatter-page}}
+;
+ } 

@@ -1,10 +1,8 @@
-(ns demo.page1.formatter
+(ns demo.page.formatter
   (:require
-   [goldly.page :as page]
-   [user :refer [to-fixed]]
-   [ui.aggrid :refer [aggrid]]
+   [pinkgorilla.repl.cljs.js :refer [to-fixed]]
+   [ui.aggrid :refer [aggrid-boxed]]
    [demo.lib.ui :refer [link-href link-dispatch]]))
-
 
 (def rates
   [{:tenor "1D" :rate 1 :vol-factor 1 :s "asdköfj adkfj alkdsfj löasfj ölkdjaf löksdfj löa f" :metrics {:a 1} :report-metrics {:a 1}}
@@ -51,14 +49,13 @@
 
 
 
-(defn demo-page [{:keys [handler route-params query-params] :as route}]
+(defn formatter-page [{:keys [handler route-params query-params] :as route}]
   [:div
    [:h1.text-2xl.text-red-600.m-5 "grid with custom column formatter"]
    [link-href "/" "main"]
-   [aggrid {:box :lg
+   [aggrid-boxed {:box :lg
             :columns  rateCols
             :data rates
             :pagination true
             :paginationAutoPageSize true}]])
 
-(page/add demo-page :user/grid-formatter)

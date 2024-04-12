@@ -28,7 +28,7 @@
    {:tenor "90Y" :rate 2 :vol-factor 2 :s "asdköfj adkfj alkdsfj löasfj ölkdjaf löksdfj löa f" :metrics {:a 1} :report-metrics {:a 1}}])
 
 ^:R
-['ui.aggrid/aggrid {:data rates
-                    :box :lg
-                    :pagination true
-                    :paginationAutoPageSize true}]
+['ui.aggrid/aggrid-boxed {:data rates
+                          :box :lg
+                          :pagination true
+                          :paginationAutoPageSize true}]
