@@ -2,7 +2,9 @@
  ; build
  :lazy true
  :cljs-namespace [ui.aggrid]
- :cljs-ns-bindings {'ui.aggrid {'aggrid-boxed ui.aggrid/aggrid-boxed}}
+ :cljs-ns-bindings {'ui.aggrid {'aggrid-boxed ui.aggrid/aggrid-boxed
+                                'aggrid ui.aggrid/aggrid
+                                }}
  ; theme
  :theme {:available  {:aggrid {true ["ag-grid-community/dist/styles/ag-grid.css"]
                                "blue" ["ag-grid-community/dist/styles/ag-theme-blue.css"]
